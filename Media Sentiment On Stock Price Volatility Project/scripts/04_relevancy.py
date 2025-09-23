@@ -1,16 +1,14 @@
 # scripts/04_relevancy.py
 
-import os
-from config import settings
 from src.processing.relevance_processor import RelevanceProcessor
-from src.utils.helpers import save_csv, load_csv, load_json
+from src.utils.helpers import save_csv, load_csv, load_json, missing_file
 
 def main():
     # load directory structure
     dirs = load_json("project_paths.json")
     alias_dict = load_json("ticker_aliases.json")
 
-    TICKERS = settings.TICKERS
+    TICKERS = load_json(dirs["raw"], "valid_tickers.json")
     RelevanceProcessor()
 
     for ticker in TICKERS:
@@ -19,12 +17,8 @@ def main():
         raw_dir = dirs["tickers"][ticker]["raw"]
         processed_dir = dirs["tickers"][ticker]["processed"]
         
-        # checks if news and price data exists in raw
-        if not os.path.exists(raw_dir, f"{ticker}_news_data.csv"):
-            print("Skipping {ticker}: News data not found")
-            continue
-        if not os.path.exists(raw_dir, f"{ticker}_price_data.csv"):
-            print("Skipping {ticker}: Price data not found")
+        # checks if raw news and price data exists
+        if missing_file(raw_dir, ticker, f"{ticker}_cleaned_news_data.csv"):
             continue
 
         ticker_aliases = alias_dict[ticker]

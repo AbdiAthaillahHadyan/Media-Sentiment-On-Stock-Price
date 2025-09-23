@@ -18,9 +18,9 @@ def main():
         try:
             print("Retrieving data from yfinance")
             stock_aliases = YFinanceClient.get_stock_aliases(TICKERS)
-            save_json(stock_aliases, dirs["raw"], "ticker_aliases.json")
             complete_price_data = YFinanceClient.get_price_data(TICKERS)
             print("yfinance data retrieved successfully")
+
         except Exception as e:
             print("Yahoo Finance API failed")
             raise
@@ -28,7 +28,7 @@ def main():
         # initiate finnhub client
         print("Retrieving data from Finnhub")
         finnhub = FinnhubClient()
-        successful_tickers = []
+        valid_tickers = []
         failed_tickers = []
 
         for ticker in TICKERS:
@@ -47,21 +47,27 @@ def main():
                 stock_price_data.index.name = "date"
                 save_csv(stock_price_data, raw_dir, f"{ticker}_price_data.csv")
                 print(f"{ticker} price data saved")
-                successful_tickers
+                valid_tickers.append(ticker)
 
             except Exception as e:
                 print(f"Finnhub has failed to process {ticker}: {e}")
+                stock_aliases.pop(ticker, None)
                 failed_tickers.append(ticker)
                 continue
 
         print("All required data have been fetched!")
         print("Fetch Summary:")
-        print(f"Successful Tickers:" + " ".join(successful_tickers))
+        print(f"Valid Tickers:" + " ".join(valid_tickers))
         print(f"Failed Tickers:" + " ".join(failed_tickers))
 
-        if not successful_tickers:
+        if not valid_tickers:
             print("All tickers failed")
             sys.exit(1)
+
+        save_json(valid_tickers, dirs["raw"], "valid_tickers.json")
+        save_json(stock_aliases, dirs["raw"], "ticker_aliases.json")
+
+        
 
     except Exception as e:
         print(f"Critical error in fetch script: {e}")

@@ -40,3 +40,8 @@ def load_json(*path_segments):
     else:
         raise FileNotFoundError(f"The file at {file_path} does not exist.")
     
+def missing_file(raw_dir, ticker, file_name):
+    if not os.path.exists(raw_dir, file_name):
+        print(f"Skipping {ticker}: {file_name} not found")
+        return True
+    return False
