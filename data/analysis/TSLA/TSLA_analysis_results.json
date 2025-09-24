@@ -1,0 +1,155 @@
+{
+  "ticker": "TSLA",
+  "metric_combinations": {
+    "filtered_sentiment_metrics_daily_returns": {
+      "sentiment_metric": "filtered_sentiment_metrics",
+      "returns_metric": "daily_returns",
+      "n_observations": 214,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.30803729374180344,
+          "p_value": 4.391106448287172e-06
+        },
+        "spearman": {
+          "correlation": 0.33923856112112794,
+          "p_value": 3.6729984770037574e-07
+        }
+      },
+      "regression": {
+        "r_squared": 0.09488697433577409,
+        "adjusted_r_squared": 0.09061757327132014,
+        "slope_coefficient": 3.8703776265966296,
+        "slope_p_value": 4.391106448287122e-06,
+        "intercept": 0.7513031037739287,
+        "f_statistic": 22.2248912442971,
+        "f_p_value": 4.391106448287213e-06,
+        "n_observations": 214
+      }
+    },
+    "filtered_sentiment_metrics_overnight_returns": {
+      "sentiment_metric": "filtered_sentiment_metrics",
+      "returns_metric": "overnight_returns",
+      "n_observations": 213,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.12662683110383668,
+          "p_value": 0.06509355591453843
+        },
+        "spearman": {
+          "correlation": 0.06742234397391222,
+          "p_value": 0.3274212566706082
+        }
+      },
+      "regression": {
+        "r_squared": 0.016034354355399905,
+        "adjusted_r_squared": 0.01137101006324548,
+        "slope_coefficient": 0.8910402460561384,
+        "slope_p_value": 0.06509355591453897,
+        "intercept": 0.2058388087851586,
+        "f_statistic": 3.4383809881624425,
+        "f_p_value": 0.0650935559145352,
+        "n_observations": 213
+      }
+    },
+    "filtered_sentiment_metrics_intraday_returns": {
+      "sentiment_metric": "filtered_sentiment_metrics",
+      "returns_metric": "intraday_returns",
+      "n_observations": 214,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.1912236807612706,
+          "p_value": 0.00500166251666309
+        },
+        "spearman": {
+          "correlation": 0.19130133988018527,
+          "p_value": 0.004983658527439391
+        }
+      },
+      "regression": {
+        "r_squared": 0.03656649608388862,
+        "adjusted_r_squared": 0.03202199842390696,
+        "slope_coefficient": 1.815025601027251,
+        "slope_p_value": 0.005001662516663165,
+        "intercept": 0.3357066059357712,
+        "f_statistic": 8.046323008566842,
+        "f_p_value": 0.005001662516663101,
+        "n_observations": 214
+      }
+    },
+    "weighted_sentiment_metrics_daily_returns": {
+      "sentiment_metric": "weighted_sentiment_metrics",
+      "returns_metric": "daily_returns",
+      "n_observations": 215,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.28914887159945807,
+          "p_value": 1.6517967312223917e-05
+        },
+        "spearman": {
+          "correlation": 0.316425173271511,
+          "p_value": 2.191805507173543e-06
+        }
+      },
+      "regression": {
+        "r_squared": 0.08360706994723976,
+        "adjusted_r_squared": 0.07930475572163986,
+        "slope_coefficient": 13.306257667784907,
+        "slope_p_value": 1.651796731222417e-05,
+        "intercept": 0.681427781765945,
+        "f_statistic": 19.433045929039167,
+        "f_p_value": 1.6517967312224313e-05,
+        "n_observations": 215
+      }
+    },
+    "weighted_sentiment_metrics_overnight_returns": {
+      "sentiment_metric": "weighted_sentiment_metrics",
+      "returns_metric": "overnight_returns",
+      "n_observations": 214,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.0731360869476197,
+          "p_value": 0.28685353455980683
+        },
+        "spearman": {
+          "correlation": 0.0557202812615751,
+          "p_value": 0.41738078902310505
+        }
+      },
+      "regression": {
+        "r_squared": 0.005348887214009612,
+        "adjusted_r_squared": 0.0006571366820001812,
+        "slope_coefficient": 1.883950153870571,
+        "slope_p_value": 0.28685353455980533,
+        "intercept": 0.1725427939420658,
+        "f_statistic": 1.1400621532446968,
+        "f_p_value": 0.2868535345598251,
+        "n_observations": 214
+      }
+    },
+    "weighted_sentiment_metrics_intraday_returns": {
+      "sentiment_metric": "weighted_sentiment_metrics",
+      "returns_metric": "intraday_returns",
+      "n_observations": 215,
+      "correlation": {
+        "pearson": {
+          "correlation": 0.1666976956100334,
+          "p_value": 0.014398446658853639
+        },
+        "spearman": {
+          "correlation": 0.17785747059817913,
+          "p_value": 0.008960156967063485
+        }
+      },
+      "regression": {
+        "r_squared": 0.027788121721695425,
+        "adjusted_r_squared": 0.023223746706304227,
+        "slope_coefficient": 5.7943202464640144,
+        "slope_p_value": 0.014398446658853795,
+        "intercept": 0.2996806113258723,
+        "f_statistic": 6.088045269723391,
+        "f_p_value": 0.014398446658853684,
+        "n_observations": 215
+      }
+    }
+  }
+}
