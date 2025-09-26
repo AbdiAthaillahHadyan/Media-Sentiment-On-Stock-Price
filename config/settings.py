@@ -49,7 +49,8 @@ load_dotenv()
 FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
 
 # MODEL Settings
-NER_MODEL = "en_core_web_trf"
+NER_MODEL = os.getenv("NER_MODEL", "en_core_web_trf")
+SENTIMENT_MODEL = os.getenv("SENTIMENT_MODEL", "ProsusAI/finbert")
 
 # Analysis Duration
 START_DATE = parse_date("START_DATE", dt.date.today() - dt.timedelta(days=365))

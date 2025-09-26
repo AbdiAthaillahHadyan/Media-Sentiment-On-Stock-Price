@@ -1,50 +1,94 @@
-# A Study of News Media Sentiment on Stock Price
+# Analyse Impact of Financial News Media on Stock Price
 
-## Table of Contents
- - [1. The Objective](#1.-The-Objective)
- - [1. The Data](#2.-The-Data)
- - [1. The Methodology](#3.-The-Methodology)
- - [1. The Results](#4.-The-Results)
- - [1. The Limitations](#5.-The-Limitations)
+## Overview
+The ultimate objective of this project is to determine how stock prices fluctuate based on news media sentiment. To do this, the project fetches historical news articles and stock prices from Finnhub, and Yahoo Finance respectively. This data is then processed to aggregate daily sentiment scores using NLP models, such as spaCy's pre-trained English Language model `en_core_web_trf` and Hugging Face's `FinBERT` model. Using this data, correlation coefficients, Ordinary-Least-Squares regressions, and scatter-plots are employed.
 
-## 1. The Objective
+## Features
+- Fetches historical financial news of target companies
+- Fetches historical price data of target companies
+- Calculates relevancy scores of news articles
+- Calculates sentiment scores of news articles
+- Calculates two measures of aggregate daily sentiment scores
+- Calculates three measures of stock returns
+- Analyses all combinations of sentiment and return measures
+- Plots all combinations of sentiment and return measures
 
-The ultimate objective of this project is to determine how stock prices fluctuate based on news media sentiment. 
-News on companies can often be found publically available from sources such as Yahoo Finance. Thus, a question arises: "Can analysing news sentiment of companies enable the prediction of stock price fluctuations?".
-Employing correlation, and Ordinary-Least-Squares (OLS) regression, this project aims to test this hypothesis.
+## Installation
 
-## 2. The Data
+Clone the repository and install dependencies.
 
-There are 2 primary components of data this project will analyse to test the hypothesis:
- - News Data
- - Stock Price Data
+```bash
+git clone _
+cd _
+pip install -r requirements.txt
+```
 
-The news data refers to all the available news articles that specify a target stock, spanning the entire period being studied. 
-This project fetches all this data from Finnhub, a free API that provides the dataset of news articles from a variety of sources.
-Conveniently, all of this data is accessible via the Finnhub Python client library.
-However, the Finnhub API does place limitations on its free users, limiting our dataset to previous year, and fixing the maximum study period to a year's worth of data.
-Furthermore, news data does not include the entire article. Rather, finnhub provides the headline, and a short summary. 
-Whilst, the summary can provide a more compact version of the concepts covered in the entire article, sentiment calculations of the article will not be perfectly accurate.
+Download spaCy NLP model.
+```bash
+python -m spacy download en_core_web_trf
+```
 
-The stock price data refers to the open and close prices of target stocks.
-This project fetches this data using the yfinance python package for accessing Yahoo Finance data.
+## Configuration
 
-## 3. The Methodology
+This project uses a .env file for parameter customisation. To use:
+1. Copy `.env.example` and rename it into .env.
+2. Customise parameters to your liking
 
-As mentioned in the objective, the final act of this project will involve a statistical analysis on the relationship between news sentiment on stock price (% returns).
-However, before expanding on the calculations involved in this endeavor, this section will also cover the methods to clean the data, and prepare sentiment scores.
+### Example .env file
+```ini
+# FINNHUB API CONFIGURATION
+FINNHUB_API_KEY=your_api_key
 
-The first step of this operation was to 'clean' the data. This step mainly involved reformatting news data and price data from Finnhub and yfinance respectively.
-However, a core component of this step, that is not immediately obvious is the cleaning of irrelevant news articles.
-Finnhub, although a powerful, and most importantly free tool, is not perfect in providing news articles. Looking at the raw news data, many articles focus on entire stock indexes such as the Standard & Poor's 500 (S&P500.
-Although sentiment on stock indexes may result in price fluctuations, the goal of this project is to see the impact of news articles with direction mentions to the company/stock.
-Thus, to calculate a 'Relevancy Score' this project employed a Natural Language Processing (NLP) model. More specifically, a Named-Entity-Recognition model from spaCy. 
+# DATA SETTINGS
+TICKERS=TSLA,NVDA,GME
 
-Undoubtedly, the level of 'sentiment' a news article has, directed to a company, is naturally unavailable from the raw news data.
+START_DATE=
+END_DATE=
 
+# NLP MODEL SETTINGS
+NER_MODEL=en_core_web_trf
+SENTIMENT_MODEL=ProsusAI/finbert
 
+# ANALYSIS PARAMETERS
+ALPHA=0.67
+BETA=0.33
+RELEVANCE_THRESHOLD=0.1
+```
 
+### Notes
+- `FINNHUB_API_KEY` must be replaced with your own API key, available for free at [Finnhub](https://finnhub.io/)
+- `TICKERS` can be a single ticker or a list of tickers, separated by a comma.
+- If `START_DATE` and `END_DATE` is empty, it defaults to the past 365 days.
+- `NER_MODEL` and `SENTIMENT_MODEL` specifies the models for relevancy and sentiment calculations respectively.
+- `NER_MODEL` defaults to `en_core_web_trf`.
+- `SENTIMENT_MODEL` defaults to `ProsusAI/finbert`.
+- `ALPHA` and `BETA` are the relevancy weightings for headlines and summaries respectively.
+- `ALPHA` defaults to `0.67`.
+- `BETA` defaults tp `0.33`.
+- `RELEVANCE_THRESHOLD` is the filter threshold for the `filtered_sentiment_metrics`. Defaults to `0.1`.
 
+## Usage
+Run the full pipeline with:
+```bash
+python run_pipeline.py
+```
 
+## Output
+For each ticker listed in `.env`, the pipeline will output all analysed data in `data/analysis/ticker`. This will include the following:
+- Analysis results found in `TICKER_analysis_results.json`.
+- Plots for all metric combinations.
+
+### Example output
+Examples of outputs tested for TSLA, NVDA, and GME can be found in the `data` directory of the repository.
+## Report
+For a detailed report on the methodology, limitations, and a detailed analysis of results for TSLA, NVDA, and GME, please find [REPORT.md](REPORT.md).
+
+## References
+- [Finnhub API](https://finnhub.io/)
+- [yfinance](https://pypi.org/project/yfinance/)
+- [spaCy](https://spacy.io/)
+- [FinBERT](https://huggingface.co/ProsusAI/finbert)
+- [transformers](https://pypi.org/project/transformers/)
+- [PyTorch](https://pytorch.org/)
 
 

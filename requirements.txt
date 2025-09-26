@@ -1,0 +1,12 @@
+finnhub_python==2.4.24
+matplotlib==3.10.6
+pandas==2.3.2
+python-dotenv==1.1.1
+ratelimit==2.2.1
+scipy==1.16.2
+seaborn==0.13.2
+spacy==3.8.7
+statsmodels==0.14.5
+torch==2.8.0
+transformers==4.56.0
+yfinance==0.2.61
