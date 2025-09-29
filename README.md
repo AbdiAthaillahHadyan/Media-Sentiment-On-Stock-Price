@@ -84,11 +84,9 @@ Examples of outputs tested for TSLA, NVDA, and GME can be found in the `data` di
 For a detailed report on the methodology, limitations, and a detailed analysis of results for TSLA, NVDA, and GME, please find [REPORT.md](REPORT.md).
 
 ## References
-- [Finnhub API](https://finnhub.io/)
-- [yfinance](https://pypi.org/project/yfinance/)
-- [spaCy](https://spacy.io/)
-- [FinBERT](https://huggingface.co/ProsusAI/finbert)
-- [transformers](https://pypi.org/project/transformers/)
-- [PyTorch](https://pytorch.org/)
-
-
+### Data Sources
+- [Finnhub API](https://finnhub.io/) - for news data
+- [Yahoo Finance](https://uk.finance.yahoo.com/) - for stock price data via `yfinance`
+### NLP Models
+- [en_core_web_trf (spaCy)](https://spacy.io/) - for sentiment analysis
+- [ProsusAI/FinBERT](https://huggingface.co/ProsusAI/finbert) - for relevancy calculations
