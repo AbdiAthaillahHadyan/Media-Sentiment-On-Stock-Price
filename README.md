@@ -88,5 +88,5 @@ For a detailed report on the methodology, limitations, and a detailed analysis o
 - [Finnhub API](https://finnhub.io/) - for news data
 - [Yahoo Finance](https://uk.finance.yahoo.com/) - for stock price data via `yfinance`
 ### NLP Models
-- [en_core_web_trf (spaCy)](https://spacy.io/) - for sentiment analysis
-- [ProsusAI/FinBERT](https://huggingface.co/ProsusAI/finbert) - for relevancy calculations
+- [en_core_web_trf (spaCy)](https://spacy.io/) - for relevancy calculations
+- [ProsusAI/FinBERT](https://huggingface.co/ProsusAI/finbert) - for sentiment analysis
